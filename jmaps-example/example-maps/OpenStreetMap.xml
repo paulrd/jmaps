@@ -3,9 +3,9 @@
     <name>OpenStreetMap</name>
     <layer>
         <name>Open Street Map</name>
-        <maxZoom>18</maxZoom>
+        <maxZoom>20</maxZoom>
         <type>XYZ</type>
-        <url>http://tile.openstreetmap.org/{z}/{x}/{y}.png</url>
+        <url>https://a.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png</url>
     </layer>
     <copyright>© OpenStreetMap Contributors, Creative Commons Attribution-ShareAlike 2.0</copyright>
 </map>
