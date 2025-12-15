@@ -6,6 +6,7 @@ import net.wirelabs.jmaps.map.layer.Layer;
 import net.wirelabs.jmaps.map.painters.*;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.*;
 import java.util.Optional;
 
@@ -105,7 +106,16 @@ public class MapRenderer {
                 // if layer's opacity is < 1.0 - apply layer's opacity alpha, otherwise set alpha 1.0f
                 AlphaComposite alpha = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, Math.min(layer.getOpacity(), 1.0f));
                 tempImageGraphics.setComposite(alpha);
-                tempImageGraphics.drawImage(b.get(), 0, 0, null);
+
+                float scale = layer.getImageScale();
+                int tileSize = layer.getTileSize();
+                BufferedImage srcImg = b.get();
+                BufferedImage scaled = new BufferedImage(tileSize, tileSize, srcImg.getType());
+                AffineTransform scalingTransform = new AffineTransform();
+                scalingTransform.scale(scale, scale);
+                AffineTransformOp scaleOp = new AffineTransformOp(scalingTransform, AffineTransformOp.TYPE_BICUBIC);
+                scaled = scaleOp.filter(srcImg, scaled);
+                tempImageGraphics.drawImage(scaled, 0, 0, null);
             }
 
         }

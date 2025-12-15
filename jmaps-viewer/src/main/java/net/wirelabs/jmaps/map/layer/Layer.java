@@ -28,6 +28,8 @@ public abstract class Layer  {
     protected boolean swapAxis;
 
     protected boolean enabled = true;
+    protected float imageScale = 1.0f;
+    protected int originalTileSize;
 
     private final ProjectionEngine projectionEngine = new ProjectionEngine();
 
@@ -44,6 +46,7 @@ public abstract class Layer  {
         this.zoomOffset = (layerDefinition.getZoomOffset() == 0) ? LayerDefaults.ZOOM_OFFSET : layerDefinition.getZoomOffset();
         this.swapAxis = (!layerDefinition.getSwapAxis()) ? LayerDefaults.SWAP_AXIS : layerDefinition.getSwapAxis();
 
+        this.originalTileSize = tileSize;
         setProjection(crs);
     }
 
