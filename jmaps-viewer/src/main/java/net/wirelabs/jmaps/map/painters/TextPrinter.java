@@ -2,6 +2,8 @@ package net.wirelabs.jmaps.map.painters;
 
 import lombok.Setter;
 import net.wirelabs.jmaps.map.MapViewer;
+import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.util.UIScale;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -13,7 +15,7 @@ import java.awt.geom.*;
 public abstract class TextPrinter {
 
     protected ScreenPosition position;
-    protected Font font = new Font("Dialog", Font.BOLD, 10);
+    protected Font font = new Font("Dialog", Font.BOLD, UIScale.scale(14));
     protected Color backgroundColor = Color.WHITE;
     protected Color fontColor = Color.BLACK;
 
